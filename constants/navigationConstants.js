@@ -1,0 +1,1 @@
+export const VALID_ROUTER = ["/", "/blog", "/author", "/category", "/contact-us", "/terms-of-service", "/privacy-policy", "/404", "/about", "/programs/bootcamp", "/programs", "/programs/pgp", "/bootcamp", "/pgp","/events"];
