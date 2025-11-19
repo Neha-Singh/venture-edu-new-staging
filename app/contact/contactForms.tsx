@@ -235,7 +235,7 @@ export default function ContactForm() {
                   return (
                     <Field
                       data-invalid={isInvalid}
-                      className="relative w-full md:min-w-[260px]"
+                      className="relative w-full md:min-w-[260px] mb-6" // extra bottom space
                     >
                       <FieldLabel
                         htmlFor={field.name}
@@ -280,7 +280,7 @@ export default function ContactForm() {
                   return (
                     <Field
                       data-invalid={isInvalid}
-                      className="relative w-full md:min-w-[260px]"
+                      className="relative w-full md:min-w-[260px] mb-6" // extra bottom space
                     >
                       <FieldLabel
                         htmlFor={field.name}
