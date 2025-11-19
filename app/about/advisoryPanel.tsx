@@ -26,7 +26,7 @@ export default function AdvisoryPanel() {
       },
       {
         image: "/about/saurabh_aggarwal.svg",
-        name: "Sourabh Agarwal",
+        name: "Sorabh Agarwal",
         designation: "Co-Founder",
         company: "Angel Bay",
         link: "https://www.linkedin.com/in/sorabh-agarwal-52277a1/",
