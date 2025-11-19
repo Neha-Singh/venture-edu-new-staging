@@ -15,20 +15,17 @@ import { FooterSection } from "@/components/ui/footer";
 // });
 
 const poppins = Poppins({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-poppins', // Optional: Define a CSS variable
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], // Specify desired weights
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-
 export const metadata: Metadata = {
-  title: "Welcome to VenturEdu | Launch Your Venture with Us	",
-  description: "Discover VenturEdu, your go-to platform for entrepreneurial education and support. Explore our programs, resources, and community initiatives designed to help you launch and grow your venture",
+  title: "Welcome to VenturEdu | Launch Your Venture with Us\t",
+  description:
+    "Discover VenturEdu, your go-to platform for entrepreneurial education and support. Explore our programs, resources, and community initiatives designed to help you launch and grow your venture",
 };
-
-
-////${geistSans.variable} ${geistMono.variable}
 
 export default function RootLayout({
   children,
@@ -37,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable}  antialiased`}> 
+      <body className={`${poppins.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light" // system | dark | light
@@ -45,10 +42,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavigationMenu />
-          <main className="flex flex-col  md:mt-20 mt-15 min-h-[calc(100vh-160px)] ">
-          {children}
+          {/* reverted: let each page control its own width */}
+          <main className="flex flex-col md:mt-20 mt-15 min-h-[calc(100vh-160px)]">
+            {children}
           </main>
-         <FooterSection />
+          <FooterSection />
         </ThemeProvider>
       </body>
     </html>
