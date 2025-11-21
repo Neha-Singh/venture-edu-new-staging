@@ -3,12 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "@tanstack/react-form";
 import { Button } from "@/components/ui/button";
 import { submitForm } from "./formActions";
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import {
   InputGroup,
@@ -115,7 +110,7 @@ export default function ContactForm() {
     ) {
       setErrorContactUsState((prev) => ({
         ...prev,
-        yourName: "Name field cant be empty",
+        yourName: "Name is required",
       }));
       isValidForm = false;
     } else if (
@@ -136,7 +131,7 @@ export default function ContactForm() {
     ) {
       setErrorContactUsState((prev) => ({
         ...prev,
-        email: "Email field cant be empty",
+        email: "Email is required",
       }));
       isValidForm = false;
     } else if (
@@ -156,7 +151,7 @@ export default function ContactForm() {
       isValidForm = false;
     }
 
-    //your message validation
+    // your message validation
     if (
       form.state.values.message.trim() === "" ||
       form.state.values.message.length === 0
@@ -177,11 +172,11 @@ export default function ContactForm() {
       isValidForm = false;
     }
 
-    //your program of interest validation
+    // your program of interest validation
     if (form.state.values.programOfInterest === "") {
       setErrorContactUsState((prev) => ({
         ...prev,
-        programOfInterest: "Program of interest is required.",
+        programOfInterest: "Program of interest is required",
       }));
       isValidForm = false;
     }
@@ -191,7 +186,7 @@ export default function ContactForm() {
     if (!trimmedNumber) {
       setErrorContactUsState((prev) => ({
         ...prev,
-        contactNumber: "Mobile number field cant be empty",
+        contactNumber: "Mobile number is required",
       }));
       isValidForm = false;
     } else if (!/^\d+$/.test(trimmedNumber)) {
@@ -245,53 +240,45 @@ export default function ContactForm() {
       <form id="contact-form" className="w-full">
         <Card className="w-full gap-3">
           <CardContent>
-            <FieldGroup>
-              <Field
-                orientation="horizontal"
-                className="flex flex-col md:flex-row md:flex-wrap items-center justify-between gap-4"
-              >
+            {/* We control vertical spacing with this wrapper */}
+            <div className="space-y-4">
+              {/* First row: Name, Mobile Number, Email */}
+              <div className="flex flex-col md:flex-row md:flex-wrap items-center justify-between gap-4">
                 {/* Your Name */}
                 <form.Field name="yourName">
                   {(field) => {
                     const isInvalid = !!errorContactUsState?.yourName;
                     return (
-                      <>
-                        <Field
-                          data-invalid={isInvalid}
-                          className="relative !mb-2"
+                      <Field data-invalid={isInvalid} className="relative">
+                        <FieldLabel
+                          htmlFor={field.name}
+                          className="text-blue-900 font-semibold text-lg"
                         >
-                          <FieldLabel
-                            htmlFor={field.name}
-                            className="text-blue-900 font-semibold text-lg"
-                          >
-                            Your Name
-                          </FieldLabel>
-                          <Input
-                            id={field.name}
-                            name={field.name}
-                            value={field.state.value}
-                            onBlur={field.handleBlur}
-                            onChange={(e) => {
-                              field.handleChange(e.target.value);
-                              setErrorContactUsState((prev) => ({
-                                ...prev,
-                                yourName: "",
-                              }));
-                            }}
-                            aria-invalid={isInvalid}
-                            placeholder="Enter your Name"
-                            autoComplete="off"
+                          Your Name
+                        </FieldLabel>
+                        <Input
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onBlur={field.handleBlur}
+                          onChange={(e) => {
+                            field.handleChange(e.target.value);
+                            setErrorContactUsState((prev) => ({
+                              ...prev,
+                              yourName: "",
+                            }));
+                          }}
+                          aria-invalid={isInvalid}
+                          placeholder="Enter your Name"
+                          autoComplete="off"
+                        />
+                        {isInvalid && (
+                          <FieldError
+                            className="mt-1 text-xs text-red-600"
+                            errors={[{ message: errorContactUsState.yourName }]}
                           />
-                          {isInvalid && (
-                            <FieldError
-                              className="absolute bottom-[-25px] left-0 text-red-600"
-                              errors={[
-                                { message: errorContactUsState.yourName },
-                              ]}
-                            />
-                          )}
-                        </Field>
-                      </>
+                        )}
+                      </Field>
                     );
                   }}
                 </form.Field>
@@ -304,7 +291,7 @@ export default function ContactForm() {
                     return (
                       <Field
                         data-invalid={isInvalid}
-                        className="relative w-full !mb-2"
+                        className="relative w-full"
                       >
                         <FieldLabel
                           htmlFor={field.name}
@@ -361,7 +348,7 @@ export default function ContactForm() {
 
                         {isInvalid && (
                           <FieldError
-                            className="absolute bottom-[-25px] left-0 text-red-600"
+                            className="mt-1 text-xs text-red-600"
                             errors={[
                               { message: errorContactUsState.contactNumber },
                             ]}
@@ -377,105 +364,95 @@ export default function ContactForm() {
                   {(field) => {
                     const isInvalid = !!errorContactUsState?.email;
                     return (
-                      <>
-                        <Field
-                          data-invalid={isInvalid}
-                          className="relative !mb-2"
+                      <Field data-invalid={isInvalid} className="relative">
+                        <FieldLabel
+                          htmlFor={field.name}
+                          className="text-blue-900 font-semibold text-lg"
                         >
-                          <FieldLabel
-                            htmlFor={field.name}
-                            className="text-blue-900 font-semibold text-lg"
-                          >
-                            Your Email
-                          </FieldLabel>
-                          <Input
-                            id={field.name}
-                            name={field.name}
-                            value={field.state.value}
-                            onBlur={field.handleBlur}
-                            onChange={(e) => {
-                              field.handleChange(e.target.value);
+                          Your Email
+                        </FieldLabel>
+                        <Input
+                          id={field.name}
+                          name={field.name}
+                          value={field.state.value}
+                          onBlur={field.handleBlur}
+                          onChange={(e) => {
+                            field.handleChange(e.target.value);
 
-                              setErrorContactUsState((prev) => ({
-                                ...prev,
-                                email: "",
-                              }));
-                            }}
-                            aria-invalid={isInvalid}
-                            placeholder="Enter your email"
-                            autoComplete="off"
+                            setErrorContactUsState((prev) => ({
+                              ...prev,
+                              email: "",
+                            }));
+                          }}
+                          aria-invalid={isInvalid}
+                          placeholder="Enter your email"
+                          autoComplete="off"
+                        />
+                        {isInvalid && (
+                          <FieldError
+                            className="mt-1 text-xs text-red-600"
+                            errors={[{ message: errorContactUsState.email }]}
                           />
-                          {isInvalid && (
-                            <FieldError
-                              className="absolute bottom-[-25px] left-0 text-red-600"
-                              errors={[{ message: errorContactUsState.email }]}
-                            />
-                          )}
-                        </Field>
-                      </>
+                        )}
+                      </Field>
                     );
                   }}
                 </form.Field>
-              </Field>
+              </div>
 
               {/* Program of interest */}
               <form.Field name="programOfInterest">
                 {(field) => {
                   const isInvalid = !!errorContactUsState.programOfInterest;
                   return (
-                    <>
-                      <Field
-                        data-invalid={isInvalid}
-                        className="relative !mb-2"
+                    <Field data-invalid={isInvalid} className="relative">
+                      <FieldLabel
+                        htmlFor={field.name}
+                        className="text-blue-900 font-semibold text-lg"
                       >
-                        <FieldLabel
-                          htmlFor={field.name}
-                          className="text-blue-900 font-semibold text-lg"
+                        Program of interest
+                      </FieldLabel>
+                      <Select
+                        name={field.name}
+                        value={field.state.value}
+                        aria-invalid={isInvalid}
+                        onValueChange={(value) => {
+                          field.handleChange(value);
+                          setErrorContactUsState((prev) => ({
+                            ...prev,
+                            programOfInterest: "",
+                          }));
+                        }}
+                      >
+                        <SelectTrigger
+                          className={`w-full ${
+                            isInvalid ? "border-red-600" : ""
+                          }`}
                         >
-                          Program of interest
-                        </FieldLabel>
-                        <Select
-                          name={field.name}
-                          value={field.state.value}
-                          aria-invalid={isInvalid}
-                          onValueChange={(value) => {
-                            field.handleChange(value);
-                            setErrorContactUsState((prev) => ({
-                              ...prev,
-                              programOfInterest: "",
-                            }));
-                          }}
-                        >
-                          <SelectTrigger
-                            className={`w-full ${
-                              isInvalid ? "border-red-600" : ""
-                            }`}
-                          >
-                            <SelectValue placeholder="Select your program of interest" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              <SelectItem value="pgp">
-                                Enquiry about PGP in Entreprenuership
-                              </SelectItem>
-                              <SelectItem value="bootcamp">
-                                Enquiry about 90-day Bootcamp
-                              </SelectItem>
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
-                        {isInvalid && (
-                          <FieldError
-                            className="absolute bottom-[-25px] left-0 text-red-600"
-                            errors={[
-                              {
-                                message: errorContactUsState.programOfInterest,
-                              },
-                            ]}
-                          />
-                        )}
-                      </Field>
-                    </>
+                          <SelectValue placeholder="Select your program of interest" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectItem value="pgp">
+                              Enquiry about PGP in Entreprenuership
+                            </SelectItem>
+                            <SelectItem value="bootcamp">
+                              Enquiry about 90-day Bootcamp
+                            </SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                      {isInvalid && (
+                        <FieldError
+                          className="mt-1 text-xs text-red-600"
+                          errors={[
+                            {
+                              message: errorContactUsState.programOfInterest,
+                            },
+                          ]}
+                        />
+                      )}
+                    </Field>
                   );
                 }}
               </form.Field>
@@ -485,7 +462,7 @@ export default function ContactForm() {
                 {(field) => {
                   const isInvalid = !!errorContactUsState.message;
                   return (
-                    <Field data-invalid={isInvalid} className="relative !mb-2">
+                    <Field data-invalid={isInvalid} className="relative">
                       <FieldLabel
                         htmlFor={field.name}
                         className="text-blue-900 font-semibold text-lg"
@@ -520,7 +497,7 @@ export default function ContactForm() {
                       </InputGroup>
                       {isInvalid && (
                         <FieldError
-                          className="absolute bottom-[-25px] left-0 text-red-600"
+                          className="mt-1 text-xs text-red-600"
                           errors={[{ message: errorContactUsState.message }]}
                         />
                       )}
@@ -528,7 +505,7 @@ export default function ContactForm() {
                   );
                 }}
               </form.Field>
-            </FieldGroup>
+            </div>
 
             <div className="mt-2 min-h-[30px]">
               <p

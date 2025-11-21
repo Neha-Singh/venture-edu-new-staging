@@ -90,7 +90,7 @@ function FooterSection() {
           <div className="h-[60px] flex items-center justify-start gap-4">
             <div className="flex items-center gap-4">
               <Link
-                href="https://www.facebook.com/people/VenturEdu/61578937345670/"
+                href="https://www.facebook.com/VenturEdu.Global"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="dark:invert"
@@ -105,7 +105,7 @@ function FooterSection() {
                 />
               </Link>
               <Link
-                href="https://www.instagram.com/venturedu_/#"
+                href="https://www.instagram.com/venturedu.global/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="dark:invert"
@@ -120,7 +120,7 @@ function FooterSection() {
                 />
               </Link>
               <Link
-                href="https://www.linkedin.com/company/venturedu/"
+                href=" https://www.linkedin.com/company/venturedu/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="dark:invert"
@@ -135,7 +135,7 @@ function FooterSection() {
                 />
               </Link>
               <Link
-                href="https://x.com/VenturEdu_"
+                href=" https://x.com/VenturEduGlobal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="dark:invert"
@@ -150,7 +150,7 @@ function FooterSection() {
                 />
               </Link>
               <Link
-                href="https://www.youtube.com/@VenturEdu"
+                href="https://www.youtube.com/@venturedu.global"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="dark:invert"
